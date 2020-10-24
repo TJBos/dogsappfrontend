@@ -58,6 +58,18 @@ function App() {
     setSelectedDog(dog);
   };
 
+  const deleteDog = (dog) => {
+    fetch(url + "/dog/" + dog._id, {
+      method: "delete",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then(() => {
+      // don't need the response from the post but will be using the .then to update the list of dogs
+      getDogs();
+    });
+  };
+
   return (
     <div className="App">
       <h1>DOG LISTING SITE</h1>
@@ -70,7 +82,14 @@ function App() {
           <Route
             exact
             path="/"
-            render={(rp) => <Display {...rp} dogs={dogs} />}
+            render={(rp) => (
+              <Display
+                {...rp}
+                dogs={dogs}
+                selectDog={selectDog}
+                deleteDog={deleteDog}
+              />
+            )}
           />
           <Route
             exact

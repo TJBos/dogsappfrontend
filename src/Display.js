@@ -11,6 +11,21 @@ const Display = (props) => {
             <img src={dog.img} style={{ maxWidth: "400px" }} />
             <h1>{dog.name}</h1>
             <h3>{dog.age}</h3>
+            <button
+              onClick={() => {
+                props.selectDog(dog);
+                props.history.push("/edit");
+              }}
+            >
+              Edit
+            </button>
+            <button
+              onClick={() => {
+                props.deleteDog(dog);
+              }}
+            >
+              Delete
+            </button>
           </article>
         ))}
       </div>
